@@ -23,6 +23,15 @@ class DrinkTrackerModel extends ChangeNotifier {
     prefs.setInt('drink_count', _drinkCount);
   }
 
+  Future<void> subtractDrink() async {
+    if (_drinkCount > 0) {
+      _drinkCount--;
+      notifyListeners();
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setInt('drink_count', _drinkCount);
+    }
+  }
+
   Future<void> resetCount() async {
     _drinkCount = 0;
     notifyListeners();
